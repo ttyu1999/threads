@@ -2,7 +2,7 @@ import { Card } from "primereact/card";
 import { Skeleton } from "primereact/skeleton";
 
 function ArticleLoadingSkeleton() {
-  const articles = Array.from({ length: 5 });
+  const articles = Array.from({ length: 7 });
 
   return (
     <>
@@ -15,9 +15,7 @@ function ArticleLoadingSkeleton() {
           }
           footer={
             <div className="flex flex-wrap gap-2">
-              <Skeleton width="4rem" height="2rem" shape="circle"></Skeleton>
-              <Skeleton width="4rem" height="2rem" shape="circle"></Skeleton>
-              <Skeleton width="4rem" height="2rem" shape="circle"></Skeleton>
+              <Skeleton width="12rem" height="1rem" shape="circle"></Skeleton>
             </div>
           }
           header={<Skeleton size="3rem" shape="circle"></Skeleton>}
@@ -36,7 +34,7 @@ function ArticleLoadingSkeleton() {
             header: { className: "relative" },
           }}
         >
-          <Skeleton width="100%" height="6rem"></Skeleton>
+          <Skeleton width="100%" height="1.5rem" shape="circle"></Skeleton>
           <style>{`
             .p-0 {
               padding: 0;

@@ -12,7 +12,7 @@ function ArticleContent({ article, isPost, postId, showAllText }) {
   const hasComments = article.comments && article.comments.length > 0;
 
   const header = (
-    <Link to={`/${author?._id}`}>
+    <Link to={`/profile/${author?._id}`}>
       <Avatar
         icon="pi pi-user"
         image={author?.avatar ?? null}
@@ -47,7 +47,7 @@ function ArticleContent({ article, isPost, postId, showAllText }) {
       />
       <Card
         title={
-          <Link to={`/${author?._id}`}>
+          <Link to={`/profile/${author?._id}`}>
             {author?.nickName ?? author?.userName}
           </Link>
         }

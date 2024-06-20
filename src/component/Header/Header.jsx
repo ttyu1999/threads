@@ -6,7 +6,7 @@ import { AuthContext } from "../store/contexts";
 import ThreadsIcon from "../Icon/ThreadsIcon";
 import PostCreationModal from "../PostCreation/PostCreationModal";
 import AccountMenu from "./AccountMenu";
-import SignIn from "../SigninPage";
+import SignInPage from "../SignInPage";
 
 const IconButtonItem = ({ icon, to, ...props }) => (
   <li {...props}>
@@ -70,8 +70,8 @@ function Header() {
         </div>
         <div className="header-content">
           <ul className="header-menu">
-            <IconButtonItem aria-label="home" icon="pi-home" to="/home" />
-            <IconButtonItem aria-label="search" icon="pi-search" to="/search" />
+            <IconButtonItem aria-label="home" icon="pi-home" to="home" />
+            <IconButtonItem aria-label="search" icon="pi-search" to="search" />
             <IconButtonItem
               aria-label="post"
               icon="pi-pen-to-square"
@@ -87,7 +87,7 @@ function Header() {
               aria-label="profile"
               icon="pi-user"
               onClick={showSignInDialog}
-              to={isLogin ? `/${loggedInUserId}` : null}
+              to={isLogin ? `/profile/${loggedInUserId}` : null}
             />
           </ul>
         </div>
@@ -120,7 +120,7 @@ function Header() {
           footer: { className: "justify-end" },
         }}
       >
-        <SignIn pathName={location.pathname !== '/sign-in' ? location.pathname : "/home"} />
+        <SignInPage pathName={location.pathname !== '/sign-in' ? location.pathname : "/home"} onHide={hideSignInDialog} />
       </Dialog>
     </header>
   );

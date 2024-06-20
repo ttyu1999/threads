@@ -9,9 +9,11 @@ import { Password } from "primereact/password";
 import { Checkbox } from "primereact/checkbox";
 import { Button } from "primereact/button";
 import { Message } from "primereact/message";
+import { useNavigate } from "react-router-dom";
 
-export default function SigninPage({ pathName = "/home" }) {
+export default function SignInPage({ pathName = "/home", onHide }) {
   const { onSignIn } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const [checked, setChecked] = useState(false);
   const [isInvalidLogin, setIsInvalidLogin] = useState(false);
@@ -44,8 +46,9 @@ export default function SigninPage({ pathName = "/home" }) {
         Cookies.remove("autoLoginToken");
       }
       onSignIn();
+      onHide();
       // 重定向到首頁
-      window.location.href = pathName;
+      navigate(pathName);
     } catch (error) {
       console.error("Login failed", error);
       setIsInvalidLogin(true);
@@ -67,8 +70,9 @@ export default function SigninPage({ pathName = "/home" }) {
         localStorage.setItem("authToken", response.data.token);
 
         onSignIn();
+        onHide();
         // 重定向到首頁
-        window.location.href = pathName;
+        navigate(pathName);
       } catch (error) {
         console.error("Auto-login failed", error);
       }

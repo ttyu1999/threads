@@ -24,7 +24,7 @@ function MentionInput({ inputRef, rows = 5, defaultValue = null, id = null, ...p
         setCustomers(response.data);
       } catch (error) {
         console.error("Error fetching users", error);
-      }
+      } 
     };
 
     fetchUsers();

@@ -3,15 +3,17 @@ import { useContext, useRef, useState } from "react";
 import { Avatar } from "primereact/avatar";
 import { Menu } from "primereact/menu";
 import { AuthContext } from "../store/contexts";
+import { useNavigate } from "react-router-dom";
 
 export default function AccountMenu({ onSignOut }) {
   const [theme, setTheme] = useState("dark");
   const { loggedInAvatar } = useContext(AuthContext);
   const menuRight = useRef(null);
+  const navigate = useNavigate();
 
   const handleSignOut = () => {
     onSignOut();
-    window.location.href = "/home";
+    navigate("/home");
   };
 
   const changeMyTheme = () => {
