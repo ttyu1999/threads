@@ -73,9 +73,6 @@ function CommentInputArea({
         rounded
         disabled={!value.trim()}
         className="absolute bottom-0 right-0 w-[2.5rem] h-[2.5rem] p-1"
-        pt={{
-          // icon: { className: "text-xs" }
-        }}
       />
       <style>{` .absolute { position: absolute; } `}</style>
     </div>
