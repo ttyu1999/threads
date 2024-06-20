@@ -46,7 +46,7 @@ export default function SignInPage({ pathName = "/home", onHide }) {
         Cookies.remove("autoLoginToken");
       }
       onSignIn();
-      onHide();
+      onHide && onHide();
       // 重定向到首頁
       navigate(pathName);
     } catch (error) {
@@ -70,7 +70,7 @@ export default function SignInPage({ pathName = "/home", onHide }) {
         localStorage.setItem("authToken", response.data.token);
 
         onSignIn();
-        onHide();
+        onHide && onHide();
         // 重定向到首頁
         navigate(pathName);
       } catch (error) {

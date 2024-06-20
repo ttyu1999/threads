@@ -28,7 +28,7 @@ const router = createBrowserRouter(
       children: [
         {
           path: "",
-          element: <Navigate to="/threads/home" replace />,
+          element: <Navigate to="/home" replace />,
         },
         {
           path: "home",
