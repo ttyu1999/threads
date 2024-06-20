@@ -53,7 +53,10 @@ function ImageUploadPreview({ onUpload, onUploadImage }) {
             <div className="w-auto rounded-md border-2 border-[var(--surface-d)] my-2 p-2 w-3/4 bg-[var(--primary-color-text)] flex justify-center">
               <img
                 src={file.preview}
-                className="h-[400px] object-contain"
+                className="object-contain"
+                style={{
+                  height: `${(window.innerHeight * 0.4).toFixed(0)}px`
+                }}
                 onLoad={() => {
                   URL.revokeObjectURL(file.preview);
                 }}

@@ -29,7 +29,7 @@ const EditProfileForm = ({
   return (
     <div className="flex flex-col gap-6">
       <div className="flex gap-4">
-        <div className="flex flex-col gap-1 w-full">
+        <div className="flex flex-col gap-1 basis-full">
           <label htmlFor="nickName">名稱</label>
           <InputText
             defaultValue={nickName}

@@ -26,9 +26,8 @@ function AvatarUploadAndCrop({ inputRef, onCrop, visible, onHide }) {
         dismissableMask
         blockScroll
         draggable={false}
-        className="w-[95%]"
+        className="w-[95%] max-w-[50rem]"
         header="更換頭貼"
-        style={{ width: "50rem" }}
         onHide={() => {
           onHide();
           setIsUploadImage(false);
@@ -68,7 +67,7 @@ function AvatarUploadAndCrop({ inputRef, onCrop, visible, onHide }) {
               <div className="flex flex-column h-12rem">
                 <Cropper
                   src={image}
-                  style={{ height: 500, width: "100%" }}
+                  style={{ height: `${(window.innerHeight * 0.4).toFixed(0)}px`, width: "100%" }}
                   ref={inputRef}
                   initialAspectRatio={1 / 1}
                   aspectRatio={1}
