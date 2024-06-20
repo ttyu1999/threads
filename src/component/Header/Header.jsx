@@ -61,7 +61,7 @@ function Header() {
   const hideSignInDialog = () => setVisibleSignIn(false);
 
   return (
-    <header id="header" className="z-[999]">
+    <header id="header" className="z-[999] sticky top-0">
       <div className="max-w-7xl w-[95%] py-4 mx-auto relative flex justify-between items-center max-custom:justify-end">
         <div className="max-custom:absolute max-custom:top-1/2 max-custom:left-1/2 max-custom:-translate-x-1/2 max-custom:-translate-y-1/2">
           <Link to="/home">

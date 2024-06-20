@@ -56,7 +56,7 @@ function CommentInputArea({
   };
 
   return (
-    <div>
+    <div className="relative">
       <MentionInput
         inputRef={inputRef}
         rows={rows}
@@ -72,7 +72,10 @@ function CommentInputArea({
         text
         rounded
         disabled={!value.trim()}
-        className="absolute bottom-[0.1875rem] right-[0.1875rem] p-1.5 w-auto h-auto aspect-square"
+        className="absolute bottom-0 right-0 w-[2.5rem] h-[2.5rem] p-1"
+        pt={{
+          // icon: { className: "text-xs" }
+        }}
       />
       <style>{` .absolute { position: absolute; } `}</style>
     </div>

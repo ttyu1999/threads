@@ -33,7 +33,8 @@ function LikeCommentShareButtons({ article, isPost, postId, commentId }) {
   const op = useRef(null);
 
   const notInPostPage =
-    location.pathname !== `/post/${postId}` && location.pathname !== `/post/${postId}/${commentId}`;
+    location.pathname !== `/post/${postId}` &&
+    location.pathname !== `/post/${postId}/${commentId}`;
 
   const handleLikeToggle = async (id) => {
     const likeData = {
@@ -69,8 +70,11 @@ function LikeCommentShareButtons({ article, isPost, postId, commentId }) {
 
       if (notInPostPage) return; // 只要不是在貼文內頁，就不繼續執行
 
-      if (isPost) { // 如果點讚的是PO文
-        return setSelectedPost((prevPost) => updateData(prevPost, response.data));
+      if (isPost) {
+        // 如果點讚的是PO文
+        return setSelectedPost((prevPost) =>
+          updateData(prevPost, response.data)
+        );
       }
 
       return setSelectedPost((prevPost) => {
@@ -95,7 +99,7 @@ function LikeCommentShareButtons({ article, isPost, postId, commentId }) {
             comments: updateComments(prevPost.comments),
           };
         }
-        
+
         return prevPost;
       });
     } catch (error) {
@@ -134,8 +138,8 @@ function LikeCommentShareButtons({ article, isPost, postId, commentId }) {
         }}
       >
         <a
-          href={`https://social-plugins.line.me/lineit/share?url=http://localhost:3000/post/${postId}${
-            postId === commentId ? "" : `/${commentId}`
+          href={`https://social-plugins.line.me/lineit/share?url=https://ttyu1999.github.io/threads/post/${postId}${
+            commentId ? `/${commentId}` : ""
           }?openExternalBrowser=1`}
           target="_blank"
           rel="noreferrer"

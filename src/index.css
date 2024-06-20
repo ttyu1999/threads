@@ -50,6 +50,12 @@ html {
   font-size: 15px;
 }
 
+body {
+  max-height: 100dvh;
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
 img {
   max-width: 100%;
   vertical-align: middle;
@@ -90,8 +96,8 @@ a {
 
 #root {
   background-color: var(--surface-b);
-  max-height: 100vh;
-  min-height: 100vh;
+  max-height: 100dvh;
+  min-height: 100dvh;
   display: grid;
   grid-template-rows: auto 1fr auto;
 }

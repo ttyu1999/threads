@@ -13,8 +13,7 @@ function GoBackButton() {
 
   useEffect(() => {
     // 檢查是否有上一頁，並且上一頁是否屬於同一域名
-    const referrer = document.referrer;
-    const isSameDomain = referrer.startsWith(window.location.origin);
+    const isSameDomain = window.history.state !== null;
 
     if (window.history.length > 1 && isSameDomain) {
       setHasPreviousPage(true);

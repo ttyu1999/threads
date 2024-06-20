@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import Header from "./component/Header/Header";
 import Footer from "./component/Footer";
 import usePageTitle from "./component/hook/usePageTitle";
@@ -7,6 +7,11 @@ import { PostProvider } from "./component/provider/PostProvider";
 
 function App() {
   usePageTitle();
+  const location = useLocation();
+
+  if (location.pathname === "/") {
+    return <Navigate to="/home" replace />;
+  }
 
   return (
     <AuthProvider>

@@ -27,10 +27,6 @@ const router = createBrowserRouter(
       element: <App />,
       children: [
         {
-          path: "",
-          element: <Navigate to="/home" replace />,
-        },
-        {
           path: "home",
           element: <HomePage />,
         },
@@ -50,6 +46,10 @@ const router = createBrowserRouter(
           path: "sign-in",
           element: <SignInPage />,
         },
+        {
+          path: "*",
+          element: <Navigate to="/home" replace />
+        }
       ],
     },
   ],
