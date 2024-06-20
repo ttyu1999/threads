@@ -28,8 +28,8 @@ const EditProfileForm = ({
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex gap-4">
-        <div className="flex flex-col gap-1 basis-full">
+      <div className="flex flex-wrap gap-4">
+        <div className="flex flex-col gap-1 w-0 grow">
           <label htmlFor="nickName">名稱</label>
           <InputText
             defaultValue={nickName}
@@ -38,7 +38,7 @@ const EditProfileForm = ({
             className="border-0 bg-[var(--surface-50)] py-3"
           />
         </div>
-        <div>
+        <div className="flex-none">
           <ProfileAvatarMenu
             currentUser={currentUser}
             onRemoveAvatar={handleRemoveAvatar}

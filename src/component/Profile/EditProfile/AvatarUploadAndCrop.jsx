@@ -43,7 +43,7 @@ function AvatarUploadAndCrop({ inputRef, onCrop, visible, onHide }) {
         <div className="card flex justify-content-center">
           <Stepper ref={stepperRef} className="w-full" linear>
             <StepperPanel header="選擇">
-              <div className="flex flex-column h-12rem">
+              <div className="flex flex-column">
                 <ImageUploadPreview
                   onUpload={handleFile}
                   onUploadImage={handleUploadImage}
@@ -64,17 +64,17 @@ function AvatarUploadAndCrop({ inputRef, onCrop, visible, onHide }) {
               </div>
             </StepperPanel>
             <StepperPanel header="裁切">
-              <div className="flex flex-column h-12rem">
+              <div>
                 <Cropper
                   src={image}
-                  style={{ height: `${(window.innerHeight * 0.4).toFixed(0)}px`, width: "100%" }}
+                  style={{ height: `${(window.innerHeight * 0.4).toFixed(0)}px`, objectFit: "contain" }}
                   ref={inputRef}
                   initialAspectRatio={1 / 1}
                   aspectRatio={1}
                   dragMode={true}
                   guides={false}
                   viewMode={1}
-                  zoomTo={0.1}
+                  zoomTo={0.01}
                   autoCropArea={1}
                   responsive={true}
                   checkOrientation={false}
@@ -86,6 +86,19 @@ function AvatarUploadAndCrop({ inputRef, onCrop, visible, onHide }) {
                   }
                   .cropper-crop-box, .cropper-view-box {
                     border-radius: 50%;
+                  }
+                  .cropper-point.point-se {
+                    width: 5px;
+                    height: 5px;
+                  }
+                  .cropper-point, .cropper-line {
+                    background-color: var(--primary-color);
+                  }
+                  .cropper-view-box {
+                    outline-color: var(--primary-color);
+                  }
+                  .cropper-canvas > img {
+                    object-fit: contain;
                   }
                 `}</style>
               </div>
