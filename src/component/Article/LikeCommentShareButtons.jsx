@@ -1,10 +1,12 @@
 import axios from "axios";
-import { useState, useContext, useRef } from "react";
+import { useState, useContext, useRef, useEffect } from "react";
 import { Button } from "primereact/button";
 import { OverlayPanel } from "primereact/overlaypanel";
 import { AuthContext, PostContext } from "../store/contexts";
 import { Link, useLocation } from "react-router-dom";
 import LineIcon from "../Icon/LineIcon";
+import SignInPage from "../SignInPage";
+import { Dialog } from "primereact/dialog";
 
 function ButtonItem({ btn }) {
   return (
@@ -25,18 +27,28 @@ function ButtonItem({ btn }) {
 
 function LikeCommentShareButtons({ article, isPost, postId, commentId }) {
   const location = useLocation();
-  const { loggedInUserId } = useContext(AuthContext);
+  const { isLogin, loggedInUserId } = useContext(AuthContext);
+  const [visibleSignIn, setVisibleSignIn] = useState(false);
   const { setPosts, setSelectedPost } = useContext(PostContext);
+
   let { likedBy, likes, commentsCount, shares } = article;
   const isLikedByUser = likedBy.includes(loggedInUserId);
-  const [checked, setChecked] = useState(isLikedByUser);
+  const [isLiked, setIsLiked] = useState(isLikedByUser);
+
   const op = useRef(null);
+
+  useEffect(() => {
+    setIsLiked(likedBy.includes(loggedInUserId));
+  }, [loggedInUserId, likedBy]);
+
+  const showSignInDialog = () => setVisibleSignIn(true);
+  const hideSignInDialog = () => setVisibleSignIn(false);
 
   const notInPostPage =
     location.pathname !== `/post/${postId}` &&
     location.pathname !== `/post/${postId}/${commentId}`;
 
-  const handleLikeToggle = async (id) => {
+  const handleUserLike = async (id) => {
     const likeData = {
       postId: postId,
       commentId: commentId,
@@ -66,7 +78,7 @@ function LikeCommentShareButtons({ article, isPost, postId, commentId }) {
         )
       );
 
-      setChecked(response.data.likedBy.includes(loggedInUserId));
+      setIsLiked(response.data.likedBy.includes(loggedInUserId));
 
       if (notInPostPage) return; // 只要不是在貼文內頁，就不繼續執行
 
@@ -109,10 +121,12 @@ function LikeCommentShareButtons({ article, isPost, postId, commentId }) {
 
   const buttonData = [
     {
-      icon: checked ? "pi pi-thumbs-up-fill" : "pi pi-thumbs-up",
+      icon: isLiked ? "pi pi-thumbs-up-fill" : "pi pi-thumbs-up",
       ariaLabel: "Like",
       label: likes,
-      command: () => handleLikeToggle(commentId || postId),
+      command: isLogin
+        ? () => handleUserLike(commentId || postId)
+        : showSignInDialog,
     },
     {
       icon: "pi pi-comment",
@@ -172,6 +186,31 @@ function LikeCommentShareButtons({ article, isPost, postId, commentId }) {
           line-height: 1;
         }
       `}</style>
+      <Dialog
+        visible={visibleSignIn}
+        transitionOptions={{
+          classNames: "p-dialog",
+          timeout: { enter: 300, exit: 300 },
+        }}
+        className="w-[95%] max-w-screen-sm"
+        modal
+        blockScroll
+        dismissableMask
+        draggable={false}
+        onHide={hideSignInDialog}
+        pt={{
+          header: { className: "absolute right-0" },
+          content: { className: "pt-8" },
+          footer: { className: "justify-end" },
+        }}
+      >
+        <SignInPage
+          pathName={
+            location.pathname !== "/sign-in" ? location.pathname : "/home"
+          }
+          onHide={hideSignInDialog}
+        />
+      </Dialog>
     </div>
   );
 }

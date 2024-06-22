@@ -57,7 +57,7 @@ function Header() {
   };
   const hidePostDialog = () => setVisiblePost(false);
 
-  const showSignInDialog = () => (isLogin ? null : setVisibleSignIn(true));
+  const showSignInDialog = () => (setVisibleSignIn(true));
   const hideSignInDialog = () => setVisibleSignIn(false);
 
   return (
@@ -86,7 +86,7 @@ function Header() {
             <IconButtonItem
               aria-label="profile"
               icon="pi-user"
-              onClick={showSignInDialog}
+              onClick={isLogin ? null : showSignInDialog}
               to={isLogin ? `/profile/${loggedInUserId}` : null}
             />
           </ul>
