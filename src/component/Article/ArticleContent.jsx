@@ -34,7 +34,7 @@ function ArticleContent({ article, isPost, postId, showAllText }) {
   return (
     <div
       className={`relative card flex ${
-        notInPostPage
+        isPost && notInPostPage
           ? "border-b border-[var(--surface-border)] last:border-none"
           : ""
       }`}
